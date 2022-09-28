@@ -2,72 +2,86 @@ package ru.netology.radio;
 
 public class Radio {
 
-    // Регулятор громкости радио
+    // Переключение громкости радио
 
+    public int minVolume = 0;
+    public int maxVolume = 100;
     public int currentVolume;
 
-    public int getCurrentVolume() {
+    public int setCurrentVolume(int currentVolume) {
         return currentVolume;
     }
 
-    public void setToMaxVolume() {
-        currentVolume = 10;
-    }
-
-    public void setToMinVolume() {
-        currentVolume = 0;
-    }
-
-    public void setIncreaseCurrentVolume(int newCurrentVolume) {
-        if (newCurrentVolume < 10) {
+    public int setIncreaseCurrentVolume(int newCurrentVolume) {
+        if (newCurrentVolume < maxVolume) {
             currentVolume = newCurrentVolume + 1;
         } else {
-            setToMaxVolume();
+            currentVolume = maxVolume;
         }
-
+        return currentVolume;
     }
 
-    public void setDecreaseCurrentVolume(int newCurrentVolume) {
-        if (newCurrentVolume > 0) {
+    public int setDecreaseCurrentVolume(int newCurrentVolume) {
+        if (newCurrentVolume > minVolume) {
             currentVolume = newCurrentVolume - 1;
         } else {
-            setToMinVolume();
+            currentVolume = minVolume;
         }
-
+        return currentVolume;
     }
 
 
     // Переключение радиостанций
 
-    public int currentStation;
+    private int minStation;
+    private int maxStation;
+    private int currentStation;
+
+    public Radio(int minStation, int maxStation) {
+        this.minStation = minStation;
+        this.maxStation = maxStation;
+        this.currentStation = minStation;
+    }
+
+    public Radio(int quantity) {
+        maxStation = minStation + quantity - 1;
+    }
+
+    public Radio() {
+        minStation = 0;
+        maxStation = 9;
+        currentStation = minStation;
+    }
 
     public int getCurrentStation() {
         return currentStation;
     }
 
-    public void setToMaxSwitchableStation() {
-        currentStation = 9;
+    public int setToMaxSwitchableStation() {
+        return maxStation;
     }
 
-    public void setToMinSwitchableStation() {
-        currentStation = 0;
+    public int setToMinSwitchableStation() {
+        return minStation;
     }
 
 
-    public void setToNextStation(int switchableStation) {
-        if (switchableStation < 9) {
+    public int setToNextStation(int switchableStation) {
+        if (switchableStation < maxStation) {
             currentStation = switchableStation + 1;
         } else {
-            setToMinSwitchableStation();
+            return minStation;
         }
+        return currentStation;
 
     }
 
-    public void setToPrevStation(int switchableStation) {
-        if (switchableStation > 0) {
+    public int setToPrevStation(int switchableStation) {
+        if (switchableStation > minStation) {
             currentStation = switchableStation - 1;
         } else {
-            setToMaxSwitchableStation();
+            return maxStation;
         }
+        return currentStation;
     }
 }
