@@ -2,7 +2,7 @@ package ru.netology.radio;
 
 public class Radio {
 
-    // Переключение громкости радио
+    // Р РµРіСѓР»СЏС‚РѕСЂ РіСЂРѕРјРєРѕСЃС‚Рё СЂР°РґРёРѕ
 
     public int currentVolume;
 
@@ -37,7 +37,7 @@ public class Radio {
     }
 
 
-    // Переключение радиостанций
+    // РџРµСЂРµРєР»СЋС‡РµРЅРёРµ СЂР°РґРёРѕСЃС‚Р°РЅС†РёР№
 
     public int currentStation;
 
