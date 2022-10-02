@@ -2,72 +2,64 @@ package ru.netology.radio;
 
 public class Radio {
 
-    // Регулятор громкости радио
-
-    public int currentVolume;
+    private int currentVolume;
+    private int currentStation;
 
     public int getCurrentVolume() {
         return currentVolume;
     }
 
-    public void setToMaxVolume() {
-        currentVolume = 10;
-    }
-
-    public void setToMinVolume() {
-        currentVolume = 0;
-    }
-
-    public void setIncreaseCurrentVolume(int newCurrentVolume) {
-        if (newCurrentVolume < 10) {
-            currentVolume = newCurrentVolume + 1;
-        } else {
-            setToMaxVolume();
-        }
-
-    }
-
-    public void setDecreaseCurrentVolume(int newCurrentVolume) {
-        if (newCurrentVolume > 0) {
-            currentVolume = newCurrentVolume - 1;
-        } else {
-            setToMinVolume();
-        }
-
-    }
-
-
-    // Переключение радиостанций
-
-    public int currentStation;
-
     public int getCurrentStation() {
         return currentStation;
     }
 
-    public void setToMaxSwitchableStation() {
-        currentStation = 9;
-    }
-
-    public void setToMinSwitchableStation() {
-        currentStation = 0;
-    }
-
-
-    public void setToNextStation(int switchableStation) {
-        if (switchableStation < 9) {
-            currentStation = switchableStation + 1;
-        } else {
-            setToMinSwitchableStation();
+    public void setCurrentVolume(int newCurrentVolume) {
+        if (newCurrentVolume > 10) {
+            return;
         }
 
+        if (newCurrentVolume < 0) {
+            return;
+        }
+        currentVolume = newCurrentVolume;
     }
 
-    public void setToPrevStation(int switchableStation) {
-        if (switchableStation > 0) {
-            currentStation = switchableStation - 1;
+    public void setCurrentStation(int newCurrentStation) {
+        if (newCurrentStation > 9) {
+            return;
+        }
+
+        if (newCurrentStation < 0) {
+            return;
+        }
+        currentStation = newCurrentStation;
+    }
+
+    public void increaseVolume() {
+        if (currentVolume < 10) {
+            currentVolume = currentVolume + 1;
+        }
+    }
+
+    public void decreaseVolume() {
+        if (currentVolume > 0) {
+            currentVolume = currentVolume - 1;
+        }
+    }
+
+    public void next() {
+        if (currentStation < 9) {
+            currentStation = currentStation + 1;
         } else {
-            setToMaxSwitchableStation();
+            currentStation = 0;
+        }
+    }
+
+    public void prev() {
+        if (currentStation > 0) {
+            currentStation = currentStation - 1;
+        } else {
+            currentStation = 9;
         }
     }
 }
